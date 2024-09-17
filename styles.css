@@ -85,7 +85,7 @@ html, body {
         var(--row5-size);
 }
 
-.symbol-button, .empty-div {
+.symbol-button, .empty-div, .github {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,6 +95,7 @@ html, body {
     color: var(--text-color);
     overflow: hidden;
     cursor: pointer;
+    text-decoration: none;
     background-color: var(--button-bg-color);
     transition: font-size var(--transition-duration) ease, background-color var(--transition-duration) ease;
     position: relative;
@@ -102,7 +103,7 @@ html, body {
 
 .symbol-button:hover,
 .empty-div:hover,
-.github-link:hover {
+.github:hover {
     font-size: var(--hover-font-size);
     color: var(--hover-text-color);
     background-color: var(--button-hover-bg-color);
@@ -171,18 +172,14 @@ html, body {
     opacity: 0;
 }
 
-/* GitHub Link Styles */
-.github-link {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: var(--gap-size);
+.github, .github:hover {
+    color: var(--button-bg-color);
     animation: bg-rainbow 10s linear infinite;
 }
 
-.github-link:active {
-    animation: bg-rainbow 10s linear infinite, click-feedback var(--transition-duration) forwards;
+.fa-github {
+    padding: var(--gap-size);
+    animation: rotate 10s linear infinite;
 }
 
 @keyframes bg-rainbow {
@@ -193,14 +190,7 @@ html, body {
     100% { background-color: var(--rainbow-color3); }
 }
 
-.github-link img {
-    filter: invert(93%);
-    width: calc(var(--base-font-size) * 0.8); /* 1.8rem */
-    height: auto;
-    animation: github-rotate 10s linear infinite;
-}
-
-@keyframes github-rotate {
+@keyframes rotate {
     100% {
         transform: rotate(360deg);
     }
@@ -208,12 +198,9 @@ html, body {
 
 #mobile-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: calc(100vh - calc(var(--gap-size) * 2));
+    top: 47.5%;
     width: calc(100vw - calc(var(--gap-size) * 2));
     margin: var(--gap-size);
-    border-radius: var(--gap-size);
     font-size: calc(var(--base-font-size) * 0.375); /* 0.75rem */
     color: var(--text-color);
     display: flex;
@@ -225,16 +212,6 @@ html, body {
     cursor: default;
     opacity: 0;
     transition: opacity var(--fade-duration) ease;
-}
-
-#mobile-overlay img {
-    filter: invert(0%);
-    position: fixed;
-    top: 75%;
-    left: 50%;
-    width: calc(var(--base-font-size) * 0.5); /* 1rem */
-    height: calc(var(--base-font-size) * 0.5);
-    animation: github-rotate 10s linear infinite;
 }
 
 .unavailable {
@@ -249,8 +226,14 @@ html, body {
         z-index: 1000;
         opacity: 1;
     }
-    .github-link:active {
+    .fa-github, .fa-github:hover {
         position: fixed;
-        top: 75%;
+        top: 70%;
+        right: 45%;
+        font-size: calc(var(--base-font-size) * 0.6);
+        color: var(--hover-text-color);
+        background: none;
+        animation: none;
+        animation: rotate 10s linear infinite;
     }
 }
