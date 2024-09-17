@@ -102,8 +102,7 @@ html, body {
 }
 
 .symbol-button:hover,
-.empty-div:hover,
-.github:hover {
+.empty-div:hover {
     font-size: var(--hover-font-size);
     color: var(--hover-text-color);
     background-color: var(--button-hover-bg-color);
