@@ -197,10 +197,10 @@ html, body {
 
 #mobile-overlay {
     position: fixed;
-    top: 47.5%;
+    top: 45%;
     width: calc(100vw - calc(var(--gap-size) * 2));
     margin: var(--gap-size);
-    font-size: calc(var(--base-font-size) * 0.375); /* 0.75rem */
+    font-size: calc(var(--base-font-size) * 0.35); /* 0.75rem */
     color: var(--text-color);
     display: flex;
     justify-content: center;
@@ -227,9 +227,8 @@ html, body {
     }
     .fa-github, .fa-github:hover {
         position: fixed;
-        top: 70%;
-        right: 45%;
-        font-size: calc(var(--base-font-size) * 0.6);
+        top: 60vh;
+        font-size: calc(var(--base-font-size) * 0.33);
         color: var(--hover-text-color);
         background: none;
         animation: none;
