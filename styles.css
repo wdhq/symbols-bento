@@ -173,6 +173,7 @@ html, body {
 
 /* GitHub Link Styles */
 .github-link {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -225,18 +226,31 @@ html, body {
     transition: opacity var(--fade-duration) ease;
 }
 
-#mobile-overlay img, #mobile-overlay:active img {
+#mobile-overlay img {
     filter: invert(0%);
     position: fixed;
     top: 75%;
     left: 50%;
     width: calc(var(--base-font-size) * 0.5); /* 1rem */
     height: calc(var(--base-font-size) * 0.5);
-    animation: github-rotate 10s linear infinite;
 }
 
 .unavailable {
     animation: rainbow 10s linear infinite;
+}
+
+.mobile-github-link {
+    position: fixed;
+    top: 75%;
+    transition: transform 0.3s ease;
+}
+
+.mobile-github-link img {
+    animation: github-rotate 10s linear infinite;
+}
+
+.mobile-github-link:active {
+    transform: scale(0.95);
 }
 
 @media only screen and (max-width: 767px) {
