@@ -1,0 +1,247 @@
+:root {
+    /* Column sizes */
+    --col1-size: 1fr;
+    --col2-size: 1fr;
+    --col3-size: 1fr;
+    --col4-size: 1fr;
+    --col5-size: 1fr;
+    --col6-size: 1fr;
+    --col7-size: 1fr;
+    --col8-size: 1fr;
+    --col9-size: 1fr;
+    --col10-size: 1fr;
+
+    /* Row sizes */
+    --row1-size: 1fr;
+    --row2-size: 1fr;
+    --row3-size: 1fr;
+    --row4-size: 1fr;
+    --row5-size: 1fr;
+
+    /* Gap size */
+    --gap-size: 0.15rem;
+
+    /* Colors */
+    --background-color: #000;
+    --text-color: #BBB;
+    --hover-text-color: #FFF;
+    --button-bg-color: #111;
+    --button-hover-bg-color: #222;
+
+    /* Font settings */
+    --font-family: 'Inter', sans-serif;
+    --base-font-size: 2rem;
+    --hover-font-size: calc(var(--base-font-size) * 2.5); /* 5rem */
+    --div-active-font-size: calc(var(--base-font-size) * 2); /* 4rem */
+
+    /* Animation durations */
+    --transition-duration: 0.3s;
+    --fade-duration: 0.5s;
+
+    /* Rainbow colors */
+    --rainbow-color1: cyan;
+    --rainbow-color2: magenta;
+    --rainbow-color3: red;
+    --rainbow-color4: yellow;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: var(--font-family);
+    font-size: var(--base-font-size);
+    background-color: var(--background-color);
+    overflow: hidden;
+    user-select: none;
+}
+
+.container {
+    display: grid;
+    gap: var(--gap-size);
+    height: calc(100vh - calc(var(--gap-size) * 2));
+    width: calc(100vw - calc(var(--gap-size) * 2));
+    margin: var(--gap-size);
+    transition: grid-template-columns 0.5s ease, grid-template-rows 0.5s ease;
+    grid-template-columns: 
+        var(--col1-size)
+        var(--col2-size)
+        var(--col3-size)
+        var(--col4-size)
+        var(--col5-size)
+        var(--col6-size)
+        var(--col7-size)
+        var(--col8-size)
+        var(--col9-size)
+        var(--col10-size);
+    grid-template-rows: 
+        var(--row1-size)
+        var(--row2-size)
+        var(--row3-size)
+        var(--row4-size)
+        var(--row5-size);
+}
+
+.symbol-button, .empty-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: var(--gap-size);
+    color: var(--text-color);
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--button-bg-color);
+    transition: font-size var(--transition-duration) ease, background-color var(--transition-duration) ease;
+    position: relative;
+}
+
+.symbol-button:hover,
+.empty-div:hover,
+.github-link:hover {
+    font-size: var(--hover-font-size);
+    color: var(--hover-text-color);
+    background-color: var(--button-hover-bg-color);
+}
+
+.symbol-button.active {
+    opacity: 0.5;
+}
+
+.empty-div span {
+    transition: opacity var(--fade-duration) ease;
+}
+
+.empty-div.fade-out span {
+    opacity: 0;
+}
+
+/* Feedback Effect for Buttons */
+.symbol-button.active-feedback {
+    animation: click-feedback var(--transition-duration) forwards;
+}
+
+@keyframes click-feedback {
+    50% {
+        transform: scale(0.95);
+    }
+}
+
+/* Feedback Effect for Symbols */
+.empty-div.div-active-feedback {
+    animation: div-click-feedback var(--transition-duration) forwards;
+}
+
+@keyframes div-click-feedback {
+    50% {
+        font-size: var(--div-active-font-size);
+        border-radius: calc(var(--gap-size) * 10);
+    }
+}
+
+/* Rainbow Gradient Animation */
+.empty-div:hover span {
+    animation: rainbow 10s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { color: var(--rainbow-color1); }
+    25% { color: var(--rainbow-color2); }
+    50% { color: var(--rainbow-color3); }
+    75% { color: var(--rainbow-color4); }
+    100% { color: var(--rainbow-color1); }
+}
+
+/* Styles for Bymbols and Copied texts */
+.symbol-button[data-symbols=""] .bymbols-text,
+.symbol-button[data-symbols=""] .copied-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity var(--transition-duration) ease;
+    pointer-events: none;
+}
+
+.symbol-button[data-symbols=""] .copied-text {
+    opacity: 0;
+}
+
+/* GitHub Link Styles */
+.github-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--gap-size);
+    animation: bg-rainbow 10s linear infinite;
+}
+
+.github-link:active {
+    animation: bg-rainbow 10s linear infinite, click-feedback var(--transition-duration) forwards;
+}
+
+@keyframes bg-rainbow {
+    0% { background-color: var(--rainbow-color3); }
+    25% { background-color: var(--rainbow-color4); }
+    50% { background-color: var(--rainbow-color1); }
+    75% { background-color: var(--rainbow-color2); }
+    100% { background-color: var(--rainbow-color3); }
+}
+
+.github-link img {
+    filter: invert(93%);
+    width: calc(var(--base-font-size) * 0.9); /* 1.8rem */
+    height: auto;
+    animation: github-rotate 10s linear infinite;
+}
+
+@keyframes github-rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: calc(100vh - calc(var(--gap-size) * 2));
+    width: calc(100vw - calc(var(--gap-size) * 2));
+    margin: var(--gap-size);
+    border-radius: var(--gap-size);
+    font-size: calc(var(--base-font-size) * 0.375); /* 0.75rem */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: -1000;
+    opacity: 0;
+    transition: opacity var(--fade-duration) ease;
+}
+
+#mobile-overlay img {
+    filter: invert(0%);
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    width: calc(var(--base-font-size) * 0.5); /* 1rem */
+    height: calc(var(--base-font-size) * 0.5);
+    animation: github-rotate 10s linear infinite;
+}
+
+.unavailable {
+    animation: rainbow 10s linear infinite;
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        opacity: 0;
+    }
+    #mobile-overlay {
+        z-index: 1000;
+        opacity: 1;
+    }
+}
