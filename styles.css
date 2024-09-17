@@ -225,7 +225,7 @@ html, body {
     transition: opacity var(--fade-duration) ease;
 }
 
-#mobile-overlay img {
+#mobile-overlay img, #mobile-overlay:active img {
     filter: invert(0%);
     position: fixed;
     top: 75%;
